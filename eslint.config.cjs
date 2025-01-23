@@ -35,6 +35,13 @@ module.exports = [
       '**/*.mjs',
     ],
     // Override or add rules here
-    rules: {},
+    rules: {
+      quotes: ['error', 'single'],
+      '@typescript-eslint/consistent-type-imports': 'error',
+      '@typescript-eslint/explicit-function-return-type': [
+        'error',
+        { allowExpressions: true },
+      ],
+    },
   },
 ];

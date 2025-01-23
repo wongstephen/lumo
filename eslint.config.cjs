@@ -5,8 +5,15 @@ module.exports = [
   ...nx.configs['flat/typescript'],
   ...nx.configs['flat/javascript'],
   {
+    plugins: {
+      prettier: require('eslint-plugin-prettier/recommended'),
+      'simple-import-sort': require('eslint-plugin-simple-import-sort'),
+    },
+  },
+  {
     ignores: ['**/dist'],
   },
+
   {
     files: ['**/*.ts', '**/*.tsx', '**/*.js', '**/*.jsx'],
     rules: {
@@ -42,6 +49,8 @@ module.exports = [
         'error',
         { allowExpressions: true },
       ],
+      'simple-import-sort/imports': 'error',
+      'simple-import-sort/exports': 'error',
     },
   },
 ];

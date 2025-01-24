@@ -2,7 +2,12 @@
   "name": "@./source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "lint": "npx nx run-many -t lint",
+    "build": "npx nx run-many -t build",
+    "test": "npx nx run-many -t test",
+    "clear-cache": "npx nx clear-cache && npx nx reset"
+  },
   "private": true,
   "dependencies": {
     "next": "15.1.6",

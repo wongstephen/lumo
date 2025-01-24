@@ -1,0 +1,11 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Button > should render successfully 1`] = `
+<body>
+  <div>
+    <button
+      class="_container_05d42c"
+    />
+  </div>
+</body>
+`;

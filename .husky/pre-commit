@@ -1,0 +1,5 @@
+printf "\033[0;33mRunning husky pre-commit hook. To disable this, run 'git commit -n'\033[0m\n"
+npm run build
+npm run test
+npm run lint
+printf "\e[0;32mHusky pre-commit hook passed\e[0;32m\n"

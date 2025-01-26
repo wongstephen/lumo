@@ -1,6 +1,22 @@
 .container {
   border-radius: 0.5rem;
-  border: 1px solid black;
+  border: 1px solid #222222;
   cursor: pointer;
   padding: 0.5rem 1rem;
+
+  &[data-variant='primary'] {
+    background-color: #222222;
+    color: #f2f2f2;
+  }
+
+  &[data-variant='secondary'] {
+    background-color: #f2f2f2;
+    color: #222222;
+  }
+
+  &[data-disabled='true'] {
+    background-color: #c0c0c0;
+    color: #222222;
+    cursor: not-allowed;
+  }
 }

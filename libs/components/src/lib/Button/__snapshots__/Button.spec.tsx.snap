@@ -5,6 +5,7 @@ exports[`Button > should render successfully 1`] = `
   <div>
     <button
       class="_container_05d42c"
+      data-variant="primary"
     />
   </div>
 </body>

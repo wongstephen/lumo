@@ -1,3 +1,5 @@
+import '../theme.css';
+
 import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
@@ -9,17 +11,29 @@ const meta: Meta<typeof Button> = {
   title: 'atoms/Button',
   tags: ['autodocs'],
 };
+
 export default meta;
+
 type Story = StoryObj<typeof Button>;
 
+const DEFAULT_CHILDREN = 'Submit';
+
 export const Primary: Story = {
-  args: { children: 'Click Me!' },
+  args: { children: DEFAULT_CHILDREN },
 };
 
 export const Secondary: Story = {
-  args: { children: 'Click Me!', variant: 'secondary' },
+  args: { children: DEFAULT_CHILDREN, appearance: 'secondary' },
+};
+
+export const Outline: Story = {
+  args: { children: DEFAULT_CHILDREN, appearance: 'outline' },
+};
+
+export const Transparent: Story = {
+  args: { children: DEFAULT_CHILDREN, appearance: 'transparent' },
 };
 
 export const Disabled: Story = {
-  args: { children: 'Click Me!', variant: 'secondary', disabled: true },
+  args: { children: DEFAULT_CHILDREN, appearance: 'secondary', disabled: true },
 };

@@ -1,0 +1,19 @@
+:root {
+  --primary-black: hsl(200, 6%, 10%);
+  --primary-gray: #d0d0d0;
+  --primary-white: #fdfdfd;
+
+  --primary-button: var(--primary-black);
+  --primary-button-hover: hsl(200, 6%, 20%);
+  --secondary-button: var(--primary-white);
+  --secondary-button-hover: hsl(0, 0%, 89%);
+  --outline-button-hover: rgb(24, 26, 27, 0.1);
+  --transparent-button-hover: rgb(24, 26, 27, 0.1);
+  --disabled-button: var(--primary-gray);
+
+  --primary-text: var(--primary-black);
+  --secondary-text: var(--primary-white);
+
+  --border-radius-sm: 0.25rem;
+  --border-radius-md: 0.5rem;
+}

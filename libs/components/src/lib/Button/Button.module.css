@@ -1,22 +1,93 @@
 .container {
-  border-radius: 0.5rem;
-  border: 1px solid #222222;
+  --outline--width: 1px;
+  --outline--offset: 3px;
+
+  position: relative;
+  border-radius: var(--border-radius-sm);
+  border: 1px solid var(--primary-black);
   cursor: pointer;
   padding: 0.5rem 1rem;
+  outline: none;
+  transition: background 100ms ease-in-out;
 
-  &[data-variant='primary'] {
-    background-color: #222222;
-    color: #f2f2f2;
+  /* Appearance */
+  &[data-appearance='primary'] {
+    background-color: var(--primary-button);
+    color: var(--secondary-text);
+
+    &:hover {
+      background-color: var(--primary-button-hover);
+    }
   }
 
-  &[data-variant='secondary'] {
-    background-color: #f2f2f2;
-    color: #222222;
+  &[data-appearance='secondary'] {
+    background-color: var(--secondary-button);
+    color: var(--primary-button);
+
+    &:hover {
+      background-color: var(--secondary-button-hover);
+    }
   }
 
+  &[data-appearance='outline'] {
+    background-color: transparent;
+    color: var(--primary-button);
+
+    &:hover {
+      background-color: var(--outline-button-hover);
+    }
+  }
+
+  &[data-appearance='transparent'] {
+    background-color: transparent;
+    border-color: transparent;
+    color: var(--primary-button);
+
+    &:hover {
+      background-color: var(--transparent-button-hover);
+    }
+  }
+
+  /* Disabled */
   &[data-disabled='true'] {
-    background-color: #c0c0c0;
-    color: #222222;
+    background-color: var(--disabled-button);
+    border-color: transparent;
+    color: var(--secondary-text);
     cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  /* Button Sizes */
+  &[data-size='small'] {
+    font-size: 0.75rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  &[data-size='medium'] {
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+  }
+
+  &[data-size='large'] {
+    font-size: 1.25rem;
+    padding: 0.75rem 1.5rem;
+  }
+
+  /* Focus outline */
+  &:focus-visible::before,
+  &:focus-visible::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: calc(var(--border-radius-sm) - var(--outline--offset));
+  }
+
+  &:focus-visible::before {
+    outline: var(--outline--width) solid var(--primary-white);
+    outline-offset: var(--outline--offset);
+  }
+  &:focus-visible::after {
+    outline: var(--outline--width) solid var(--primary-black);
+    outline-offset: calc(var(--outline--offset) + var(--outline--width));
   }
 }

@@ -3,7 +3,7 @@ import { nxE2EPreset } from '@nx/playwright/preset';
 import { defineConfig, devices } from '@playwright/test';
 
 // For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:3000';
+const baseURL = process.env['BASE_URL'] || 'http://127.0.0.1:3000';
 
 /**
  * Read environment variables from file.
@@ -21,13 +21,15 @@ export default defineConfig({
     baseURL,
     /* Collect trace when retrying the failed test. See https://playwright.dev/docs/trace-viewer */
     trace: 'on-first-retry',
+    ignoreHTTPSErrors: true,
   },
   /* Run your local dev server before starting the tests */
   webServer: {
-    command: 'npx nx run next-app:serve-static',
-    url: 'http://localhost:3000',
+    command: 'npx nx run next-app:start',
+    url: 'http://127.0.0.1:3000',
     reuseExistingServer: !process.env.CI,
     cwd: workspaceRoot,
+    timeout: 120000,
   },
   projects: [
     {

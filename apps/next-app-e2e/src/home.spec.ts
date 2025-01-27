@@ -6,7 +6,7 @@ test.describe('Home', () => {
   });
 
   test('smoke', { tag: '@smoke' }, async ({ page }) => {
-    await expect(page).toHaveTitle('Home');
+    await expect(page).toHaveScreenshot();
   });
 
   test('has title', async ({ page }) => {

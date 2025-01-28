@@ -4,7 +4,10 @@ import { Button } from './Button';
 
 describe('Button', () => {
   it('should render successfully', () => {
-    const { baseElement } = render(<Button />);
+    const { baseElement, getByRole } = render(<Button />);
+    const button = getByRole('button');
+
+    expect(button.tagName).toBe('BUTTON');
     expect(baseElement).toBeTruthy();
     expect(baseElement).toMatchSnapshot();
   });

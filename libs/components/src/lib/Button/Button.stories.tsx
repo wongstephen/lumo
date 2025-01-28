@@ -4,6 +4,8 @@ import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
+import ArrowIcon from '../Icons/ArrowIcon';
+import DownloadIcon from '../Icons/DownloadIcon';
 import { Button } from './Button';
 
 const meta: Meta<typeof Button> = {
@@ -36,4 +38,21 @@ export const Transparent: Story = {
 
 export const Disabled: Story = {
   args: { children: DEFAULT_CHILDREN, appearance: 'secondary', disabled: true },
+};
+
+export const IconBefore: Story = {
+  name: 'Icon Before',
+  args: {
+    children: DEFAULT_CHILDREN,
+    icon: <ArrowIcon variant="left" />,
+  },
+};
+
+export const Icon: Story = {
+  name: 'Icon After',
+  args: {
+    children: DEFAULT_CHILDREN,
+    icon: <ArrowIcon />,
+    iconPosition: 'after',
+  },
 };

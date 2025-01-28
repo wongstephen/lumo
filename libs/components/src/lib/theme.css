@@ -5,10 +5,18 @@
 
   --primary-button: var(--primary-black);
   --primary-button-hover: hsl(200, 6%, 20%);
+  --primary-button-hover-active: hsl(200, 6%, 30%);
+
   --secondary-button: var(--primary-white);
   --secondary-button-hover: hsl(0, 0%, 89%);
-  --outline-button-hover: rgb(24, 26, 27, 0.1);
-  --transparent-button-hover: rgb(24, 26, 27, 0.1);
+  --secondary-button-hover-active: hsl(0, 0%, 79%);
+
+  --outline-button-hover: hsla(200, 6%, 10%, 0.1);
+  --outline-button-hover-active: hsla(200, 6%, 10%, 0.2);
+
+  --transparent-button-hover: hsla(200, 6%, 10%, 0.1);
+  --transparent-button-hover-active: hsla(200, 6%, 10%, 0.2);
+
   --disabled-button: var(--primary-gray);
 
   --primary-text: var(--primary-black);

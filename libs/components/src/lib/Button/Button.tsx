@@ -1,4 +1,4 @@
-import { Slot } from '@radix-ui/react-slot';
+import { Slot } from 'radix-ui';
 import React from 'react';
 
 import styles from './Button.module.css';
@@ -7,7 +7,26 @@ type ButtonSizes = 'small' | 'medium' | 'large';
 
 type ButtonAppearance = 'primary' | 'secondary' | 'outline' | 'transparent';
 
-export type ButtonProps = {
+type ButtonIcon = {
+  /**
+   * Place icon before or after its context.
+   *
+   * @default 'before'
+   */
+  iconPosition?: 'before' | 'after';
+  /**
+   * A button with only an icon.
+   *
+   * @default false
+   */
+  iconOnly?: boolean;
+  /**
+   * Icon to be displayed.
+   */
+  icon?: React.ReactNode;
+};
+
+export type ButtonProps = ButtonIcon & {
   /**
    * A button can have different appearances and passed custom content.
    * - 'primary (default)': Primary button action emphasis.
@@ -24,12 +43,6 @@ export type ButtonProps = {
    * @default false
    */
   disabled?: boolean;
-  /**
-   * Place icon before or after its context
-   *
-   * @default 'before'
-   */
-  iconPosition?: 'before' | 'after';
   /**
    * Button size options
    *
@@ -48,16 +61,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       appearance = 'primary',
-      disabled,
-      children,
-      size = 'medium',
-      iconPosition = 'before',
       asChild = false,
+      children,
+      disabled,
+      icon,
+      iconOnly,
+      iconPosition = 'before',
+      size = 'medium',
       ...props
     },
     ref,
   ): React.JSX.Element => {
-    const Comp = asChild ? Slot : 'button';
+    const Comp = asChild ? Slot.Root : 'button';
 
     return (
       <Comp
@@ -65,11 +80,18 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         data-appearance={appearance}
         data-disabled={disabled}
         data-size={size}
+        data-icon-position={iconPosition}
         disabled={disabled}
         ref={ref}
         {...props}
       >
-        {children}
+        {icon && iconPosition === 'before' && (
+          <span className={styles.icon}>{icon}</span>
+        )}
+        {!iconOnly && <Slot.Slottable>{children}</Slot.Slottable>}
+        {icon && iconPosition === 'after' && (
+          <span className={styles.icon}>{icon}</span>
+        )}
       </Comp>
     );
   },

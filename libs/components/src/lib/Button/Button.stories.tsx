@@ -5,13 +5,15 @@ import type { Meta, StoryObj } from '@storybook/react';
 import { within } from '@storybook/testing-library';
 
 import ArrowIcon from '../Icons/ArrowIcon';
-import DownloadIcon from '../Icons/DownloadIcon';
-import { Button } from './Button';
+import Button from './Button';
 
 const meta: Meta<typeof Button> = {
   component: Button,
   title: 'atoms/Button',
   tags: ['autodocs'],
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export default meta;
@@ -40,19 +42,35 @@ export const Disabled: Story = {
   args: { children: DEFAULT_CHILDREN, appearance: 'secondary', disabled: true },
 };
 
-export const IconBefore: Story = {
-  name: 'Icon Before',
+export const Icons: Story = {
+  name: 'Icon Before/After',
   args: {
     children: DEFAULT_CHILDREN,
-    icon: <ArrowIcon variant="left" />,
+    type: 'button',
   },
-};
-
-export const Icon: Story = {
-  name: 'Icon After',
-  args: {
-    children: DEFAULT_CHILDREN,
-    icon: <ArrowIcon />,
-    iconPosition: 'after',
+  render: (args) => {
+    return (
+      <div style={{ display: 'grid', gap: '1rem' }}>
+        <div>
+          <Button
+            {...args}
+            iconPosition="before"
+            icon={<ArrowIcon variant="left" />}
+          />
+          <p>Icons before the button with the iconBefore slot</p>
+        </div>
+        <div>
+          <Button
+            {...args}
+            iconPosition="after"
+            icon={<ArrowIcon variant="right" />}
+          />
+          <p>
+            Icons before and after the button with the iconBefore and iconAfter
+            slot
+          </p>
+        </div>
+      </div>
+    );
   },
 };

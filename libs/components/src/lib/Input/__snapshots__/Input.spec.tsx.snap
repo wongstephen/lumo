@@ -1,0 +1,17 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`Input > should render successfully 1`] = `
+<body>
+  <div>
+    <span
+      class="_container_94e0b2 undefined"
+      data-appearance="outline"
+      data-size="medium"
+    >
+      <input
+        type="text"
+      />
+    </span>
+  </div>
+</body>
+`;

@@ -15,6 +15,7 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@lumo/api": ["libs/api/src/index.ts"],
       "@lumo/components": ["libs/components/src/index.ts"]
     }
   },

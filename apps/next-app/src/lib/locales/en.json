@@ -1,0 +1,10 @@
+{
+  "EmailNewsletter": {
+    "title": "Subscribe to our newsletter",
+    "inputPlaceholder": "Enter your email address",
+    "button": "Subscribe",
+    "buttonLoading": "Subscribing...",
+    "successMessage": "Thank you for subscribing!",
+    "errorMessage": "An error occurred. Please try again later."
+  }
+}

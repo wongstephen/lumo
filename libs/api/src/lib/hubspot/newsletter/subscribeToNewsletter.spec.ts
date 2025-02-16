@@ -1,4 +1,4 @@
-import submitNewsletterForm from './newsletterClient';
+import { subscribeToNewsletter } from './subscribeToNewsletter';
 
 describe('submitNewsletterForm', () => {
   beforeEach(() => {
@@ -8,10 +8,10 @@ describe('submitNewsletterForm', () => {
   it('should create correct body with all fields', async () => {
     const data = {
       email: 'test@example.com',
-      contactConsent: true,
-      pageUrl: 'http://example.com',
       pageName: 'Example Page',
+      pageUri: 'http://example.com',
       formId: '12345',
+      portalId: '78901234',
     };
 
     (global.fetch as jest.Mock).mockResolvedValue({
@@ -19,38 +19,35 @@ describe('submitNewsletterForm', () => {
       status: 200,
     });
 
-    await submitNewsletterForm(data);
+    await subscribeToNewsletter(data);
 
     const expectedBody = JSON.stringify({
-      fields: [
-        { name: 'email', value: 'test@example.com' },
-        { name: 'contact_consent', value: 'true' },
-      ],
+      fields: [{ name: 'email', value: data.email }],
       context: {
-        pageName: 'Example Page',
-        pageUrl: 'http://example.com',
+        pageName: data.pageName,
+        pageUri: data.pageUri,
       },
     });
 
     expect(global.fetch).toHaveBeenCalledWith(
-      'https://api.hsforms.com/submissions/v3/integration/submit/49209266/12345',
+      `https://api.hsforms.com/submissions/v3/integration/submit/${data.portalId}/${data.formId}`,
       {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(expectedBody),
+        body: expectedBody,
       },
     );
 
     expect(global.fetch).toHaveBeenCalledTimes(1);
 
-    expect(await submitNewsletterForm(data)).toBe(200);
+    expect(await subscribeToNewsletter(data)).toBe(200);
   });
 
   it('should throw an error if the response is not ok', async () => {
     const data = {
       email: 'test@example.com',
-      contactConsent: true,
       formId: '12345',
+      portalId: '78901234',
     };
 
     (global.fetch as jest.Mock).mockResolvedValue({
@@ -58,8 +55,8 @@ describe('submitNewsletterForm', () => {
       status: 400,
     });
 
-    await expect(submitNewsletterForm(data)).rejects.toThrow(
-      'Failed to submit the form',
+    await expect(subscribeToNewsletter(data)).rejects.toThrow(
+      'Submission Failed',
     );
   });
 });

@@ -1,8 +1,6 @@
-import '../theme.css';
+import '../styles/globals.css';
 
-import { expect } from '@storybook/jest';
 import type { Meta, StoryObj } from '@storybook/react';
-import { within } from '@storybook/testing-library';
 
 import ArrowIcon from '../Icons/ArrowIcon';
 import Button from './Button';
